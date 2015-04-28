@@ -96,7 +96,7 @@ void RSA::aseta_arvot(){
 		}
 	}
 	this->etsi_d();
-	//cout<<this->d;
+
 }
 
 void RSA::etsi_d() {
@@ -126,66 +126,50 @@ void RSA::syota_salaluku() {
 
 void RSA::salaa(unsigned long long x) {	
 	
-	//for (int i =1; i < 100000; i++)
-	//{
+
 	if (x = 1) {
-		//auto start = std::chrono::high_resolution_clock::now();
+	
 		clock_t startTime = clock();
 		this->salaluku = this->salaa_avaa(this->luku,this->a,this->N);
 		clock_t endTime = clock();
 		clock_t clockTicksTaken = endTime - startTime;
 		this -> kulunut_aika = clockTicksTaken / (double) CLOCKS_PER_SEC;//;= endTime / (double) CLOCKS_PER_SEC;
-		// auto finish = std::chrono::high_resolution_clock::now();
-     // this -> kulunut_aika = std::chrono::duration_cast<std::chrono::microseconds>(finish-start).count();
-	
+
 	} 
 
 	else if (x = 2) {
-		//auto start = std::chrono::high_resolution_clock::now();
 		clock_t startTime = clock();
 		this->salaluku = this->saa_vaa(1,this->luku,this->a,this->N);
 		clock_t endTime = clock();
 		clock_t clockTicksTaken = endTime - startTime;
 		this -> kulunut_aika = clockTicksTaken / (double) CLOCKS_PER_SEC;//= endTime / (double) CLOCKS_PER_SEC;
-		// auto finish = std::chrono::high_resolution_clock::now();
-      //this-> kulunut_aika = std::chrono::duration_cast<std::chrono::microseconds>(finish-start).count();
+
 	
 	}
-	//} 
+
 	
 }
 
 void RSA::avaa(unsigned long long x) {
 	
-	//for (int i =1; i < 100000; i++)
-	//{
+
 	if (x = 1) {
-		//auto start = std::chrono::high_resolution_clock::now();
 		clock_t startTime = clock();
 		this->luku = this->salaa_avaa(this->salaluku,this->d,this->N);
 		clock_t endTime = clock();
 		clock_t clockTicksTaken = endTime - startTime;
 		this -> kulunut_aika= clockTicksTaken / (double) CLOCKS_PER_SEC; 
 		
-		//((float)this->aika)/(float)CLOCKS_PER_SEC;
-		//  auto finish = std::chrono::high_resolution_clock::now();
-    // this-> kulunut_aika = std::chrono::duration_cast<std::chrono::microseconds>(finish-start).count();
-	  
-		
+
 	} else if (x = 2) { 
-		//auto start = std::chrono::high_resolution_clock::now();
 		clock_t startTime = clock();
 		this->luku = this->saa_vaa(1,this->salaluku,this->d,this->N);
 		clock_t endTime = clock();
 		clock_t clockTicksTaken = endTime - startTime;
 		this -> kulunut_aika = clockTicksTaken / (double) CLOCKS_PER_SEC;//((float)this->aika)/(float)CLOCKS_PER_SEC;
-		//auto finish = std::chrono::high_resolution_clock::now();
-		//this-> kulunut_aika = std::chrono::duration_cast<std::chrono::microseconds>(finish-start).count();	 
+	 
 	}
-		//this->kulunut_aika = std::chrono::system_clock::to_time_t(end);
 	
-
-	//}
 
 }
 
@@ -198,17 +182,7 @@ unsigned long long RSA::salaa_avaa(unsigned long long k, unsigned long long a, u
 	}
 
 }
-
-/*
-unsigned long long RSA::salaa_avaa(unsigned long long k, unsigned long long a, unsigned long long N) {
-	this ->apu =(unsigned long long)pow(k,a);
-	if (a <= 2) {
-		return this->apu % this->N;
-	} else {
-		return (k*this->salaa_avaa(k,a-1,this->N)) % this->N;
-	}
-
-}*/
+}
 unsigned long long RSA::saa_vaa(unsigned long long x, unsigned long long k, unsigned long long a, unsigned long long N) {
 	unsigned long long pot;
 	if (a == 1) {
@@ -221,20 +195,6 @@ unsigned long long RSA::saa_vaa(unsigned long long x, unsigned long long k, unsi
 		return saa_vaa(x,k,a,this->N);
 	}
 }
-/*
-unsigned long long RSA::saa_vaa(unsigned long long x, unsigned long long k, unsigned long long a, unsigned long long N) {
-	
-	if (a == 1) {
-		return (x*k) % this->N;
-	} else {
-		this->pot = a%2;
-		a = (a - this->pot)/2;
-		x = (unsigned long long)(x*pow(k,this->pot)) % this->N;
-		k = (unsigned long long)pow(k,2)%this->N;
-		return saa_vaa(x,k,a,this->N);
-	}
-}*/
-
 
 double RSA::anna_aika() {
 	return this->kulunut_aika;
